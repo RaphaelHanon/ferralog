@@ -1,0 +1,27 @@
+#include <stdio.h>
+#inculde <stdlib.h>
+#include <windows.h>
+#include <locale.h>
+int main(){
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UuTF8);
+    int senha = 3030;
+    int tentativa;
+    int bloqueio = 0;
+    
+    printf("Digite a senha: ");
+    scanf("%d", &tentativa);
+    while (tentativa != senha && bloqueio < 2){
+        printf("Senha incorreta, tente novamente: ");
+        scanf("%d", &tentativa);
+        bloqueio++;
+     } if (tentativa == senha){
+        printf("Senha correta, acesso permitido.\n");
+     }else{
+        printf("bloqueado");
+    }
+
+
+    return 0;
+
+}    
