@@ -1,27 +1,89 @@
 #include <stdio.h>
-#inculde <stdlib.h>
+#include <stdlib.h>
 #include <windows.h>
-#include <locale.h>
-int main(){
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UuTF8);
-    int senha = 3030;
-    int tentativa;
-    int bloqueio = 0;
-    
-    printf("Digite a senha: ");
-    scanf("%d", &tentativa);
-    while (tentativa != senha && bloqueio < 2){
-        printf("Senha incorreta, tente novamente: ");
-        scanf("%d", &tentativa);
-        bloqueio++;
-     } if (tentativa == senha){
-        printf("Senha correta, acesso permitido.\n");
-     }else{
-        printf("bloqueado");
-    }
 
+int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    int opcao_menu = 0;
+
+    // Variáveis de cadastro
+    char nome_ferramenta[50];
+    unsigned int codigo_qr = 0;
+    float valor_compra = 0.0;
+    int possui_garantia = 0;
+
+    // Loop principal do sistema
+    do {
+        printf("==================================================\n");
+        printf("          SISTEMA FERRALOG - INVENTÁRIO            \n");
+        printf("==================================================\n");
+        printf("[1] Cadastrar nova ferramenta\n");
+        printf("[2] Consultar ferramenta\n");
+        printf("[3] Relatórios\n");
+        printf("[4] Sair do sistema\n");
+        printf("==================================================\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &opcao_menu);
+
+        system("cls");
+
+        switch (opcao_menu) {
+            case 1:
+                printf("--- MÓDULO DE CADASTRO ---\n");
+                printf("Nome da ferramenta: ");
+                scanf(" %[^\n]", nome_ferramenta);
+
+                printf("Código QR: ");
+                scanf("%u", &codigo_qr);
+
+                printf("Valor da compra: R$ ");
+                scanf("%f", &valor_compra);
+
+                printf("Possui garantia? (1 para SIM, 0 para NÃO): ");
+                scanf("%d", &possui_garantia);
+
+                system("cls");
+
+                if (valor_compra > 0) {
+                    printf("--- RECIBO FERRALOG ---\n");
+                    printf("Ferramenta: %s\n", nome_ferramenta);
+                    printf("QR Code: %u\n", codigo_qr);
+                    printf("Valor: R$ %.2f\n", valor_compra);
+                    printf("Garantia: %s\n", possui_garantia ? "SIM" : "NÃO");
+
+                    // Alerta de risco financeiro
+                    if (valor_compra > 1000.0 && possui_garantia == 0) {
+                        printf("\n*** ALERTA DE ALTO RISCO FINANCEIRO ***\n");
+                        printf("Motivo: Equipamento de alto valor e sem cobertura de garantia.\n");
+                    } else {
+                        printf("\nSTATUS: Cadastro em conformidade.\n");
+                    }
+                } else {
+                    printf("ERRO: Valor da compra inválido.\n");
+                }
+                printf("\n");
+                break;
+
+            case 2:
+                printf("Módulo de consulta em desenvolvimento...\n\n");
+                break;
+
+            case 3:
+                printf("Módulo de relatórios em desenvolvimento...\n\n");
+                break;
+
+            case 4:
+                printf("Salvando dados...\nSaindo do sistema.\n");
+                break;
+
+            default:
+                printf("ERRO: A opção %d não existe no menu.\n\n", opcao_menu);
+                break;
+        }
+
+    } while (opcao_menu != 4);
 
     return 0;
-
-}    
+}
