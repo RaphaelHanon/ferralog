@@ -23,6 +23,7 @@ int main() {
         printf("[2] Consultar ferramenta\n");
         printf("[3] Relatórios\n");
         printf("[4] Sair do sistema\n");
+        printf("[5] cadastro de ferramentas\n");
         printf("==================================================\n");
         printf("Digite a opção desejada: ");
         scanf("%d", &opcao_menu);
@@ -77,7 +78,27 @@ int main() {
             case 4:
                 printf("Salvando dados...\nSaindo do sistema.\n");
                 break;
-
+            
+            case 5:
+                int num_ferramenta;
+                char nome_da_ferramenta[50];
+                int codigo_code;
+                float valor_ferramenta; 
+                printf("módulo de cadastro de ferramentas\n\n");
+                printf("quantas ferramentas deseja cadastrar?\n");
+                scanf("%d",&num_ferramenta);
+                for(int i = num_ferramenta; i>0; i--){
+                    printf("nome da ferramenta: \n ");
+                    scanf(" %[^\n]", &nome_da_ferramenta);
+                    printf("QR Code: \n ");
+                    scanf("%d", &codigo_code);
+                    printf("Valor: \n");
+                    scanf("%f", &valor_ferramenta);
+                    printf("Garantia: \n ");
+                    scanf("%d", &possui_garantia);
+                }
+            
+                break;
             default:
                 printf("ERRO: A opção %d não existe no menu.\n\n", opcao_menu);
                 break;
